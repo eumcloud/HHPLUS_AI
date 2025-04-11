@@ -156,7 +156,7 @@ python run_classifier.py
 
 ## 📌 GitHub 링크
 
-[참고](https://github.com/eumcloud/AGNews-DistilBERT-Classifier)
+[참고](https://github.com/eumcloud/HHPLUS_AI/blob/main/week03/AGNews-DistilBERT-Classifier.ipynb)
 
 ---
 

@@ -143,15 +143,19 @@ np.unique([sample['label'] for sample in train_data])
 ```
 
 .
-├── mnli_finetune.ipynb           # MNLI 실험 notebook
 ├── week03/
 │   └── plot/
 │       ├── loss_curve.png        # Loss 시각화
 │       └── accuracy_plot.png     # Accuracy 시각화
-├── requirements.txt              # 설치 의존성 목록
-└── README.md                     # 본 보고서
+|   ├── requirements.txt              # 설치 의존성 목록
+|   └── README.md                     # 본 보고서
+|    ├── mnli_finetune.ipynb           # MNLI 실험 notebook
 
 ```
+
+## 📌 GitHub 링크
+
+[참고](https://github.com/eumcloud/HHPLUS_AI/blob/main/week03/mnli_finetune.ipynb)
 
 ---
 
