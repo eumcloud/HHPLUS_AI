@@ -1,5 +1,5 @@
 
-# Multi-Genre Natural Language Inference (MNLI) 실험 보고서
+# Multi-Genre Natural Language Inference (MNLI) 캐이스 모델 비교 보고서
 
 ## 1. 실험 개요
 
