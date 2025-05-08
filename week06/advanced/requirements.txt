@@ -1,0 +1,27 @@
+# 핵심 기능
+streamlit
+langchain
+openai
+pdfplumber
+PyMuPDF
+pillow
+requests
+python-dotenv  # ← 반드시 포함되어야 함
+
+# 표/그래프 추출 강화
+camelot-py[cv]
+tabula-py
+pandas
+numpy
+matplotlib
+
+# OCR 및 이미지 보완 (그래프나 수식 이미지 해석 대비)
+opencv-python
+pytesseract
+
+# MLOps 관점: 로깅 및 실험 관리
+mlflow
+tqdm
+
+# 기타
+lxml  # arXiv 등 XML 파싱용

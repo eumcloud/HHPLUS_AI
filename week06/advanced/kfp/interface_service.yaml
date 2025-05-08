@@ -1,0 +1,22 @@
+name: ExtractText
+inputs:
+  - name: pdf_path
+    type: String
+outputs:
+  - name: text
+    type: String
+implementation:
+  container:
+    image: python:3.10
+    command:
+      - python
+      - -c
+      - |
+        import pdfplumber
+        pdf_path = "{{inputs.parameters.pdf_path}}"
+        with pdfplumber.open(pdf_path) as pdf:
+            text = "".join(page.extract_text() or "" for page in pdf.pages)
+        with open("text.txt", "w") as f:
+            f.write(text)
+    fileOutputs:
+      text: /text.txt
