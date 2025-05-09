@@ -6,7 +6,7 @@ pdfplumber
 PyMuPDF
 pillow
 requests
-python-dotenv  # ← 반드시 포함되어야 함
+python-dotenv  #
 
 # 표/그래프 추출 강화
 camelot-py[cv]
