@@ -1,67 +1,65 @@
- 
----
+ # 📄 논문 요약 LLM 서비스
 
-## 📄 논문 요약 LLM 서비스
+**경량 LLM 기반 논문 요약 웹 애플리케이션**입니다.
+사용자는 PDF 파일 업로드 또는 링크 입력을 통해 논문을 제공하고, Hugging Face Inference API를 통해 구조화된 요약을 받을 수 있습니다.
 
-LLM을 활용한 구조화된 논문 요약 서비스입니다.
-사용자가 논문 PDF를 업로드하면, SFT 기반 LLM(Pegasus)을 통해 논문 내용을 다음과 같은 형식으로 요약합니다:
+## 서비스 개요
+
+* 사용자는 Streamlit UI에서 논문 PDF를 **업로드**하거나, **PDF 링크를 입력**할 수 있습니다.
+* 논문 텍스트는 전처리 후, \*\*LLM(LLaMA 3 8B Instruct)\*\*에 입력됩니다.
+* LLM은 다음과 같은 형식으로 논문을 요약합니다:
 
 ```
-1. 제목 요약:  
-2. 연구 목적:  
-3. 방법론 요약:  
-4. 주요 실험 결과:  
-5. 기여 및 의의:  
-6. 응용 가능성:  
+1. 제목 요약:
+2. 연구 목적:
+3. 방법론 요약:
+4. 주요 실험 결과:
+5. 기여 및 의의:
+6. 응용 가능성:
 ```
 
 ---
 
-## 🚀 데모
+## 사용한 기술 스택
 
-Streamlit 인터페이스를 통해 손쉽게 PDF 업로드 및 요약 결과 확인 가능.
-
-![streamlit-demo](./demo_screenshot.png)
-
----
-
-## ✅ 기능 요약
-
-* PDF 업로드 또는 URL 입력
-* 논문 텍스트 자동 추출 (PyMuPDF 사용)
-* 참고문헌 제거 전처리 포함
-* Pegasus 모델 기반 논문 요약
-* 구조화된 요약 항목 출력
+| 구성 요소           | 설명                                                               |
+| --------------- | ---------------------------------------------------------------- |
+| **Frontend**    | Streamlit                                                        |
+| **LLM Backend** | Hugging Face Inference API (meta-llama/Meta-Llama-3-8B-Instruct) |
+| **문서 처리**       | PyMuPDF (fitz)                                                   |
+| **환경 관리**       | dotenv (.env)                                                    |
 
 ---
 
-## 🧠 사용 모델
+## 시연 조건 
 
-* [`google/pegasus-arxiv`](https://huggingface.co/google/pegasus-arxiv)
-* 논문 요약(SFT) 용도로 학습된 공개 모델
+* [x] **PDF 업로드** 기능
+* [x] **PDF 링크 입력** 기능
+* [x] **질문 입력 후 요약 출력** 
+* [x] **Streamlit UI로 유연한 입력 지원**
+* [x] **지연 실행 구조로 페이지 빠르게 로딩됨**
 
 ---
 
-## 🛠️ 설치 및 실행
+## 시연준비
 
-### 1. 의존성 설치
+### 1. 설치
 
 ```bash
 pip install -r requirements.txt
 ```
 
-> `requirements.txt` 예시:
+### 2. 환경 변수 설정
 
-```text
-streamlit
-transformers
-torch
-pymupdf
-sentencepiece
-python-dotenv
+`.env` 파일 생성:
+
+```bash
+HF_TOKEN=hf_your_huggingface_token
 ```
 
-### 2. 실행
+> 권한은 **Inference API (Read-only)** 만 필요
+
+### 3. 실행
 
 ```bash
 streamlit run app.py
@@ -69,31 +67,46 @@ streamlit run app.py
 
 ---
 
-## 📁 프로젝트 구조
+## 📂 프로젝트 구조
 
 ```
 .
 ├── app.py               # Streamlit 메인 앱
 ├── README.md
 ├── requirements.txt
-└── .env                 # (선택) 환경 변수 파일
+├── .env.example         # 환경 변수 템플릿
+└── .gitignore
 ```
 
 ---
 
-## 📌 주의사항
+## 입력 예시 (Instruction 3종)
 
-* 현재 모델은 최대 1024 토큰만 입력 가능합니다. 긴 논문은 앞부분 위주로 요약됩니다.
-* SentencePiece 기반 모델 사용을 위해 `sentencepiece` 설치 필수입니다.
-* 구조화된 요약 출력을 위해 강제 프롬프트를 삽입하고 있습니다. 완벽한 항목 출력은 보장되지 않습니다.
+### ① 논문 목적과 기여 요약
+
+> "이 논문의 핵심 목적과 주요 기여를 요약해줘"
+
+### ② 방법론 위주로 분석
+
+> "사용된 방법론과 모델 아키텍처만 중심으로 설명해줘"
+
+### ③ 응용 가능성과 한계
+
+> "이 연구의 실용적 활용 가능성과 한계를 평가해줘"
 
 ---
 
-## ✨ 향후 개선 아이디어
+## 배포
 
-* 사용자 정의 질문 입력 → QA 기반 요약으로 확장
-* LoRA 기반 SFT로 구조화 성능 향상
-* 논문 섹션 자동 추출 및 항목별 요약
-* PDF 메타데이터 분석 포함
+* AWS EC2 + Streamlit + Nginx로 배포 가능
+* 또는 Hugging Face Spaces로도 경량화된 버전 배포 가능
+
+---
+
+## 기타 확장 아이디어
+
+* RAG + 벡터 검색 구조로 고도화
+* LangChain 기반 문서 QA 서비스로 확장
+* 사용자 질문 히스토리 + 요약 결과 저장 기능 추가
 
 --- 
