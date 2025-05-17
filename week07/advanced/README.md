@@ -15,9 +15,9 @@
 
 ## 학습 환경
 
-- 모델: `gpt2`
-- 학습 Epoch: 3
-- Optimizer: AdamW
+- 모델: `gpt4`
+- 학습 Epoch: 10
+- Optimizer: Adam
 - 로깅: wandb 연동
 
 ## wandb 학습 결과

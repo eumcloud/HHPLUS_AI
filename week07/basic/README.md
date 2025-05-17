@@ -18,7 +18,7 @@
 
 ```bash
 python train.py \
-  --model_name_or_path=gpt2 \
+  --model_name_or_path=gpt4 \
   --dataset_name=<데이터셋 이름> \
   --output_dir=./gpt-finetune \
   --per_device_train_batch_size=2 \
